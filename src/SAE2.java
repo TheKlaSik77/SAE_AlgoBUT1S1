@@ -5,33 +5,10 @@ public class SAE2 {
 
     public static void main(String[] args) {
 
-        /*
-        // int[] donnees = genererDonneesEntreBornes(50, 0, 20);
-        // System.out.println(Arrays.toString(donnees));
+        long tempsSortJava = moyenneDeVitesseDExecutionTriInsertion(200000,10);
+        long tempsTriInsertion = moyenneDeVitesseDExecutionTriInsertion(200000,10);
+        long tempsTriBulle = moyenneDeVitesseDExecutionTriBulle(200000,10);
 
-        int[] donnees = genererDonnees(200000);
-
-        long tempsDebut = System.nanoTime();
-
-        Arrays.sort(donnees); // trie le tableau en utilisant un algorithme de type Quicksort
-
-        long tempsFin = System.nanoTime();
-
-        System.out.println("Temps de calcul en millisecondes: " + ((tempsFin - tempsDebut) / 1000000) );
-
-        //System.out.println(Arrays.toString(donnees));
-
-
-
-        System.out.println( "Moyenne pour 50 tours de la vitesse execution pour 200 000 valeurs dans le tableau : " + moyenneDeVitesseDExecution(200000,50) + "ms");
-        System.out.println( "Moyenne pour 10 tours de la vitesse execution pour 1 000 000 valeurs dans le tableau : " + moyenneDeVitesseDExecution(10000000,10) + "ms");
-
-         */
-        int[] tab = {0,4,1,2,4,32,14,1,0,144,17};
-        triParInserer(tab);
-        for (int n : tab){
-            System.out.println(n);
-        }
 
     }
 
@@ -40,7 +17,7 @@ public class SAE2 {
         (valeurs comprises entre Integer.MIN_VALUE=-2^31 et Integer.MAX_VALUE=2^31-1 inclus).
     */
 
-    public static long moyenneDeVitesseDExecution(int nbDonnees, int nbTests){
+    public static long moyenneDeVitesseDExecutionSortJava(int nbDonnees, int nbTests){
 
             long tempsCalcul = 0;
             long somme = 0;
@@ -58,6 +35,49 @@ public class SAE2 {
                 somme += tempsCalcul;
             }
             return somme / nbTests;
+
+
+    }
+    public static long moyenneDeVitesseDExecutionTriInsertion(int nbDonnees, int nbTests){
+
+        long tempsCalcul = 0;
+        long somme = 0;
+
+        for (int cpt = 0 ; cpt < nbTests ; cpt++){
+            int[] donnees = genererDonnees(nbDonnees);
+
+            long tempsDebut = System.nanoTime();
+
+            triParInsertion(donnees); // trie le tableau en utilisant un algorithme de type Quicksort
+
+            long tempsFin = System.nanoTime();
+
+            tempsCalcul = (tempsFin - tempsDebut) / 1000000;
+            somme += tempsCalcul;
+        }
+        return somme / nbTests;
+
+
+    }
+
+    public static long moyenneDeVitesseDExecutionTriBulle(int nbDonnees, int nbTests){
+
+        long tempsCalcul = 0;
+        long somme = 0;
+
+        for (int cpt = 0 ; cpt < nbTests ; cpt++){
+            int[] donnees = genererDonnees(nbDonnees);
+
+            long tempsDebut = System.nanoTime();
+
+            triABulle(donnees); // trie le tableau en utilisant un algorithme de type Quicksort
+
+            long tempsFin = System.nanoTime();
+
+            tempsCalcul = (tempsFin - tempsDebut) / 1000000;
+            somme += tempsCalcul;
+        }
+        return somme / nbTests;
 
 
     }
@@ -80,23 +100,45 @@ public class SAE2 {
         return t;
     }
 
-    public static void triParInserer(int[] tab) {
+    public static void triParInsertion(int[] tab) {
 
         int compteur = 0;
         for (int i = 1 ; i < tab.length ; i++) {
-            if (tab[i] >= tab[i - 1]) {
+            if (tab[i] >= tab[i-1]) {
                 compteur++;
             } else {
                 compteur++;
                 int j;
-                int pivot = tab[i];
-                for (j = compteur; j > 0 && tab[j - 1] > tab[i]; j--) {
-                    tab[j] = tab[j - 1];
+                int pivot;
+                for (j = compteur; j > 0 && tab[j-1] > tab[j] ; j--) {
+                    pivot = tab[j];
+                    tab[j] = tab[j-1];
+                    tab[j-1] = pivot;
+
                 }
-                tab[j] = pivot;
 
             }
         }
+        System.out.println("compteur : " + compteur);
+
+    }
+
+    public static void triABulle(int[] tab){
+
+        boolean aEchange;
+        int pivot;
+
+        do {
+            aEchange = false;
+            for (int i = 1 ; i < tab.length ; i++){
+                if (tab[i] < tab[i-1]){
+                    pivot = tab[i];
+                    tab[i] = tab[i-1];
+                    tab[i-1] = pivot;
+                    aEchange = true;
+                }
+            }
+        } while (aEchange);
 
     }
 }
