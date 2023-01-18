@@ -1,2 +1,5 @@
 Question Préliminaire : sort de java pour 200 000 : 44 ms
    			sort de java pour 10 000 000 : 1915 ms
+
+Question 1 : efficacité Tri Insertion pour 200 000 données : 13 756 ms
+	     efficacité Tri à Bulle pour 200 000 données : 205 957 ms 
