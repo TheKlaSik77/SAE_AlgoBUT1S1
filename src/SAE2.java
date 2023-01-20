@@ -1,6 +1,5 @@
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Random;
 public class SAE2 {
 
@@ -9,13 +8,13 @@ public class SAE2 {
         /*
         long tempsSortJava = moyenneDeVitesseDExecutionSortJava(200000,1);
         long tempsTriInsertion = moyenneDeVitesseDExecutionTriInsertion(200000,1);
-        long tempsTriBulle = moyenneDeVitesseDExecutionTriBulle(200000,1);
+        //long tempsTriBulle = moyenneDeVitesseDExecutionTriBulle(200000,1);
 
         System.out.println("Temps, sur 1 exécution, pour la fonction tri de JAVA : " + tempsSortJava + " ms");
         System.out.println("Temps, sur 1 exécution, pour la fonction tri par insertion de complexité n² : " + tempsTriInsertion + " ms");
-        System.out.println("Temps, sur 1 exécution, pour la fonction tri à bulle de complexité n² : " + tempsTriBulle + " ms");
-        */
+        //System.out.println("Temps, sur 1 exécution, pour la fonction tri à bulle de complexité n² : " + tempsTriBulle + " ms");
 
+        */
         // Exercice 3 :
         /*
         int[] tab = genererDonneesEntreBornes(30,5,20);
@@ -29,25 +28,30 @@ public class SAE2 {
         }
         System.out.println();
         */
+        //System.out.println("Temps sur 200 000 valeurs du tri à bulle : " + moyenneDeVitesseDExecutionTriBulle(200000,1) + " ms");
+        //System.out.println("Temps sur 200 000 valeurs du tri comptage : " + moyenneDeVitesseDExecutionTriComptage(5) + " ms");
 
         // Exercice 4 :
-        /*
-        // Version avec quickSort
 
-
-        */
         int[] tab1 = genererDonnees(100000000);
-        int[] tabFinal1 = nPlusGrandesValeursAvecNotreAlgo(tab1,100);
+
+        int[] tabFinal1 = kylianLasik_YasmineBenYoussef(tab1,100);
+        /*
         for (int n : tabFinal1){
             System.out.print(n + "\t");
         }
+
+         */
         System.out.println("\n");
 
-        int[] tab2 = genererDonnees(100000000);
-        int[] tabFinal2 = nPlusGrandesValeursAvecSortJava(tab2,100);
+
+        int[] tabFinal2 = nPlusGrandesValeursAvecSortJava(tab1,100);
+        /*
         for (int n : tabFinal2){
             System.out.print(n + "\t");
         }
+
+         */
 
     }
 
@@ -57,78 +61,6 @@ public class SAE2 {
         Retourne un tableau de int de longueur n rempli avec des valeurs aleatoires
         (valeurs comprises entre Integer.MIN_VALUE=-2^31 et Integer.MAX_VALUE=2^31-1 inclus).
     */
-    public static int[] nPlusGrandesValeursAvecSortJava(int[] tab, int n){
-        long tempsCalcul2 = 0;
-        long tempsDebut2 = System.nanoTime();
-        int[] nPlusGrandesValeurs = new int[n];
-        int cpt = 0;
-        Arrays.sort(tab); // trie le tableau en utilisant un algorithme de type Quicksort
-        for (int i = tab.length - 1; i > tab.length - 1 - n + 1; i--){
-            nPlusGrandesValeurs[cpt] = tab[i];
-            cpt++;
-        }
-        
-
-        long tempsFin2 = System.nanoTime();
-
-        tempsCalcul2 = (tempsFin2 - tempsDebut2) / 1000000;
-        System.out.println("\n");
-
-        System.out.println("Temps de calcul de Quicksort java puis prendre les 100 derniers : " + tempsCalcul2 + "ms.");
-        return nPlusGrandesValeurs;
-    }
-    public static int[] nPlusGrandesValeursAvecNotreAlgo(int[] tab, int n){
-
-
-        long tempsCalcul1 = 0;
-        // Mon Programme :
-        long tempsDebut1 = System.nanoTime();
-        int[] nPlusGrandesValeurs = new int[n];
-        int min = tab[0];
-        int indiceMin = 0;
-        for (int i = 0 ; i < nPlusGrandesValeurs.length ; i++){
-            if (tab[i] < min){
-                min = tab[i];
-                indiceMin = i;
-            }
-            nPlusGrandesValeurs[i] = tab[i];
-        }
-
-        System.out.println();
-        for (int i = nPlusGrandesValeurs.length ; i < tab.length ; i++){
-            if (tab[i] > min){
-                nPlusGrandesValeurs[indiceMin] = tab[i];
-                min = nPlusGrandesValeurs[0];
-                indiceMin = 0;
-                for (int j = 0 ; j < nPlusGrandesValeurs.length ; j++){
-                    if (nPlusGrandesValeurs[j] < min){
-                        min = nPlusGrandesValeurs[j];
-                        indiceMin = j;
-                    }
-                }
-            }
-        }
-        int compteur = 0;
-        for (int i = 1 ; i < nPlusGrandesValeurs.length ; i++) {
-            compteur++;
-            if (nPlusGrandesValeurs[i] > nPlusGrandesValeurs[i - 1]) {
-                int j;
-                int pivot;
-                for (j = compteur; j > 0 && nPlusGrandesValeurs[j - 1] < nPlusGrandesValeurs[j]; j--) {
-                    pivot = nPlusGrandesValeurs[j];
-                    nPlusGrandesValeurs[j] = nPlusGrandesValeurs[j - 1];
-                    nPlusGrandesValeurs[j - 1] = pivot;
-
-                }
-
-            }
-        }
-        long tempsFin1 = System.nanoTime();
-        tempsCalcul1 = (tempsFin1 - tempsDebut1) / 1000000;
-        System.out.println("\n");
-        System.out.println("Temps de calcul de notre version : " + tempsCalcul1 + "ms.");
-        return nPlusGrandesValeurs;
-    }
 
     public static long moyenneDeVitesseDExecutionSortJava(int nbDonnees, int nbTests){
 
@@ -161,6 +93,27 @@ public class SAE2 {
             long tempsDebut = System.nanoTime();
 
             triParInsertion(donnees); // trie le tableau en utilisant un algorithme de type Quicksort
+
+            long tempsFin = System.nanoTime();
+
+            tempsCalcul = (tempsFin - tempsDebut) / 1000000;
+            somme += tempsCalcul;
+        }
+        return somme / nbTests;
+
+
+    }
+    public static long moyenneDeVitesseDExecutionTriComptage(int nbTests){
+
+        long tempsCalcul = 0;
+        long somme = 0;
+
+        for (int cpt = 0 ; cpt < nbTests ; cpt++){
+            int[] donnees = genererDonneesEntreBornes(200000,5,7995100);;
+
+            long tempsDebut = System.nanoTime();
+
+            triAComptage(donnees,5,7995100); // trie le tableau en utilisant un algorithme de type Quicksort
 
             long tempsFin = System.nanoTime();
 
@@ -254,6 +207,26 @@ public class SAE2 {
 
     }
 
+    public static void triAPeigne(int[] tab){
+        int facteurDeReduction = tab.length;
+        int pivot;
+        boolean echange = true;
+
+        while ((facteurDeReduction > 1) || echange){
+            if(facteurDeReduction > 1){
+                facteurDeReduction = (int) (facteurDeReduction / 1.3);
+            }
+            echange = false;
+            for (int i = 0 ; i < (tab.length - facteurDeReduction) ; i++){
+                if (tab[i] > tab[i + facteurDeReduction]){
+                    pivot = tab[i];
+                    tab[i] = tab[i + facteurDeReduction];
+                    tab[i + facteurDeReduction] = pivot;
+                    echange = true;
+                }
+            }
+        }
+    }
     public static void triAComptage(int[] tab, int min, int max){
 
         int cpt = 0;
@@ -273,20 +246,80 @@ public class SAE2 {
             }
         }
     }
+    // Exercice 4
+    public static int[] nPlusGrandesValeursAvecSortJava(int[] tab, int n){
+        long tempsCalcul2 = 0;
+        long tempsDebut2 = System.nanoTime();
+        int[] nPlusGrandesValeurs = new int[n];
+        int cpt = 0;
+        Arrays.sort(tab); // trie le tableau en utilisant un algorithme de type Quicksort
+        for (int i = tab.length - 1; i > tab.length - 1 - n; i--){
+            nPlusGrandesValeurs[cpt] = tab[i];
+            cpt++;
+        }
 
-    public static void plusGrandeValeurTab(int[] tab){
-         if (tab.length > 0){
-             int max = tab[0];
-             for (int i = 0 ; i < tab.length ; i++){
-                 if (tab[i] > max){
-                     max = tab[i];
-                 }
-             }
-             System.out.println("Plus grand : " + max + ".");
-         }
 
+        long tempsFin2 = System.nanoTime();
 
+        tempsCalcul2 = (tempsFin2 - tempsDebut2) / 1000000;
+        System.out.println("\n");
+
+        System.out.println("Temps de calcul de Quicksort java puis prendre les 100 derniers : " + tempsCalcul2 + "ms.");
+        return nPlusGrandesValeurs;
     }
+    // Notre algorithme Exercice 4:
+    public static int[] kylianLasik_YasmineBenYoussef(int[] tab, int n){
+
+
+        long tempsCalcul1 = 0;
+        long tempsDebut1 = System.nanoTime();
+        int[] nPlusGrandesValeurs = new int[n];
+        int min = tab[0];
+        int indiceMin = 0;
+        for (int i = 0 ; i < nPlusGrandesValeurs.length ; i++){
+            if (tab[i] < min){
+                min = tab[i];
+                indiceMin = i;
+            }
+            nPlusGrandesValeurs[i] = tab[i];
+        }
+
+        System.out.println();
+        for (int i = nPlusGrandesValeurs.length ; i < tab.length ; i++){
+            if (tab[i] > min){
+                nPlusGrandesValeurs[indiceMin] = tab[i];
+                min = nPlusGrandesValeurs[0];
+                indiceMin = 0;
+                for (int j = 0 ; j < nPlusGrandesValeurs.length ; j++){
+                    if (nPlusGrandesValeurs[j] < min){
+                        min = nPlusGrandesValeurs[j];
+                        indiceMin = j;
+                    }
+                }
+            }
+        }
+        int compteur = 0;
+        for (int i = 1 ; i < nPlusGrandesValeurs.length ; i++) {
+            compteur++;
+            if (nPlusGrandesValeurs[i] > nPlusGrandesValeurs[i - 1]) {
+                int j;
+                int pivot;
+                for (j = compteur; j > 0 && nPlusGrandesValeurs[j - 1] < nPlusGrandesValeurs[j]; j--) {
+                    pivot = nPlusGrandesValeurs[j];
+                    nPlusGrandesValeurs[j] = nPlusGrandesValeurs[j - 1];
+                    nPlusGrandesValeurs[j - 1] = pivot;
+
+                }
+
+            }
+        }
+        long tempsFin1 = System.nanoTime();
+        tempsCalcul1 = (tempsFin1 - tempsDebut1) / 1000000;
+        System.out.println("\n");
+        System.out.println("Temps de calcul de notre version : " + tempsCalcul1 + "ms.");
+        return nPlusGrandesValeurs;
+    }
+
 
 }
 

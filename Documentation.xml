@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indexing>
+ <object alt="" name="Image1" object_type="graphic"/>
+ <object alt="" name="Image2" object_type="graphic"/>
+ <paragraph index="15" node_type="writer">Documentation à propos des algorithmes utilisés :</paragraph>
+ <paragraph index="20" node_type="writer">Dans un premier temps, afin de calculer confortablement les moyennes de vitesse de calcul de chaque tri comme demandé, nous avons crée une fonction dédiée prenant en paramètre le nombre de tests que l’on veut effectuer. Sur un grand nombre de données tel que 200 000 données, les temps de calculs sont très très long. On est à plus de 180 000 ms pour le tri à bulle. En ce qui concerne le tri par insertion, on est à 14 000 ms, et pour le java sort, on a 261 ms. Les complexité de tri à bulle et tri par insertion sont de n². La complexité de java Sort() est de n log(n). Pour 10 000 000, on aurait donc 50x plus de temps par rapport à ces résultats.</paragraph>
+ <paragraph index="22" node_type="writer">Tri à peigne :</paragraph>
+ <paragraph index="28" node_type="writer">Tri Comptage :</paragraph>
+ <paragraph index="30" node_type="writer">Le tri comptage est beaucoup plus rapide que tri à bulle ou tri par insertion. On est à 64 ms pour le tri comptage contre 189 274 ms pour le tri à bulle, cette différence est très importante malgré la contrainte de connaître le max et le min du tableau pour faire le tri comptage.</paragraph>
+ <paragraph index="33" node_type="writer">Concernant le programme qu’il fallait crée pour concurrencer le Sort de Java, sur 10 tests, voici nos résultats :</paragraph>
+ <object index="35" name="Tableau1" object_type="table"/>
+ <paragraph index="37" node_type="writer" parent_index="35">Temps avec la méthode naïve (Sort Java)</paragraph>
+ <paragraph index="40" node_type="writer" parent_index="35">Temps avec notre programme</paragraph>
+ <paragraph index="43" node_type="writer" parent_index="35">20 861 ms</paragraph>
+ <paragraph index="46" node_type="writer" parent_index="35">199 ms</paragraph>
+ <paragraph index="49" node_type="writer" parent_index="35">25 248 ms</paragraph>
+ <paragraph index="52" node_type="writer" parent_index="35">211 ms</paragraph>
+ <paragraph index="55" node_type="writer" parent_index="35">23 099 ms</paragraph>
+ <paragraph index="58" node_type="writer" parent_index="35">384 ms</paragraph>
+ <paragraph index="61" node_type="writer" parent_index="35">22 449 ms</paragraph>
+ <paragraph index="64" node_type="writer" parent_index="35">376 ms</paragraph>
+ <paragraph index="67" node_type="writer" parent_index="35">21 651 ms </paragraph>
+ <paragraph index="70" node_type="writer" parent_index="35">351 ms</paragraph>
+ <paragraph index="73" node_type="writer" parent_index="35">27 367 ms</paragraph>
+ <paragraph index="76" node_type="writer" parent_index="35">377 ms</paragraph>
+ <paragraph index="79" node_type="writer" parent_index="35">22 924 ms</paragraph>
+ <paragraph index="82" node_type="writer" parent_index="35">415 ms</paragraph>
+ <paragraph index="85" node_type="writer" parent_index="35">21 422 ms</paragraph>
+ <paragraph index="88" node_type="writer" parent_index="35">393 ms</paragraph>
+ <paragraph index="91" node_type="writer" parent_index="35">20 559 ms</paragraph>
+ <paragraph index="94" node_type="writer" parent_index="35">390 ms</paragraph>
+ <paragraph index="97" node_type="writer" parent_index="35">21 225 ms</paragraph>
+ <paragraph index="100" node_type="writer" parent_index="35">393 ms</paragraph>
+ <paragraph index="103" node_type="writer" parent_index="35">20 145 ms</paragraph>
+ <paragraph index="106" node_type="writer" parent_index="35">399 ms</paragraph>
+ <paragraph index="110" node_type="writer">Si nous faisons la moyenne de tout ces résultats, on obtient 24695 ms pour la version naïve et 388,8 ms pour notre programme. Notre programme est donc environ 63,5 fois plus rapide que la version naïve en utilisant le sort de Java.</paragraph>
+ <paragraph index="113" node_type="writer">Pour l’exercice 5, en programmant le tri à bulle à l’aide du langage Python, on remarque que pour 2000 valeurs à trier, Python met 1111 ms contre 44 ms avec java. Sur de plus grandes tailles de tableau, java est considérablement plus rapide.</paragraph>
+</indexing>
